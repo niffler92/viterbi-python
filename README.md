@@ -2,7 +2,7 @@
 * Feature Extraction:
     * 39 MFCC features
 * Acoustic Model:
-    * Mixture Gaussian model for $p(o | q)$
+    * Mixture Gaussian model for <a href="https://www.codecogs.com/eqnedit.php?latex=p(o|q)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?p(o|q)" title="p(o|q)" /></a>
 * Lexicon/Pronunciation Model
     * HMM: what phones can follow each other
 * Language Model
