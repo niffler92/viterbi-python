@@ -10,3 +10,5 @@
 * Decoder
     * Viterbi Algorithm: dynamic programming for combining all these to get word squence from speech
 
+# Study link
+* [Stanford CS224s](https://web.stanford.edu/class/cs224s/lectures/224s.17.lec3.pdf)
