@@ -6,7 +6,7 @@
 * Lexicon/Pronunciation Model
     * HMM: what phones can follow each other
 * Language Model
-    * N-grams for computing $p(w_i | w_{i-1})$
+    * N-grams for computing <a href="https://www.codecogs.com/eqnedit.php?latex=p(w_i|w_{i-1})" target="_blank"><img src="https://latex.codecogs.com/gif.latex?p(w_i|w_{i-1})" title="p(w_i|w_{i-1})" /></a>
 * Decoder
     * Viterbi Algorithm: dynamic programming for combining all these to get word squence from speech
 
