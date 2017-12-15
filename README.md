@@ -12,7 +12,7 @@
 
 ## Viterbi algorithm ( Max-Product algorithm )
 Objective: Find the most probable sequences of states <a href="https://www.codecogs.com/eqnedit.php?latex=\{q_0,...,&space;q_t\}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\{q_0,...,&space;q_t\}" title="\{q_0,..., q_t\}" /></a> 
-that maximizes the posterior <a href="https://www.codecogs.com/eqnedit.php?latex=p(q_0,..,q_t|y_0,...,y_t)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?p(q_0,..,q_t|y_0,...,y_t)" title="p(q_0,..,q_t|y_0,...,y_t)" /></a>
+that maximizes the posterior <a href="https://www.codecogs.com/eqnedit.php?latex=p(q_0,..,q_t|o_0,...,o_t)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?p(q_0,..,q_t|o_0,...,o_t)" title="p(q_0,..,q_t|o_0,...,o_t)" /></a>
 
 # Study link
 * [Stanford CS224s](https://web.stanford.edu/class/cs224s/lectures/224s.17.lec3.pdf)
