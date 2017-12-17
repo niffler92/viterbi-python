@@ -53,68 +53,72 @@ def get_phoneme_dict(filepath):
 
 
 def get_hmm_dict(filepath):
-    hmm_dict = {}
-    hmm_txt = open(filepath, 'r')
-    num_state = 3 # Each phoneme has 3 states except 'sp' (idx==20)
-    for idx in range(21):  # 21: Number of unique phonemes
-        pronun_word = hmm_txt.readline().split('"')[1]
-        hmm_dict[pronun_word] = {}
+    if os.path.exists("./data/hmm_data.npy"):
+        hmm_data = np.load("./data/hmm_data.npy").item()
+        hmm_dict = hmm_data["hmm_dict"]
+    else:
+        hmm_dict = {}
+        hmm_txt = open(filepath, 'r')
+        num_state = 3 # Each phoneme has 3 states except 'sp' (idx==20)
+        for idx in range(21):  # 21: Number of unique phonemes
+            pronun_word = hmm_txt.readline().split('"')[1]
+            hmm_dict[pronun_word] = {}
 
-        hmm_txt.readline()
+            hmm_txt.readline()
 
-        Numstates = hmm_txt.readline().split()
-        hmm_dict[pronun_word][Numstates[0]] = Numstates[1]
+            Numstates = hmm_txt.readline().split()
+            hmm_dict[pronun_word][Numstates[0]] = Numstates[1]
 
-        if idx==20:
-            num_state = 1
+            if idx==20:
+                num_state = 1
 
-        for st_idx in range(num_state):
-            #state number
-            state = hmm_txt.readline().split()[1]
-            hmm_dict[pronun_word][state] = {}
+            for st_idx in range(num_state):
+                #state number
+                state = hmm_txt.readline().split()[1]
+                hmm_dict[pronun_word][state] = {}
 
 
-            Num_Mixes = hmm_txt.readline().split()
-            hmm_dict[pronun_word][state][Num_Mixes[0]] = Num_Mixes[1]
-            hmm_dict[pronun_word][state]['<MIXTURES>'] = {}
+                Num_Mixes = hmm_txt.readline().split()
+                hmm_dict[pronun_word][state][Num_Mixes[0]] = Num_Mixes[1]
+                hmm_dict[pronun_word][state]['<MIXTURES>'] = {}
 
-            for mix_idx in range(1,11):
+                for mix_idx in range(1,11):
 
-                mixture = hmm_txt.readline().split()
+                    mixture = hmm_txt.readline().split()
 
-                hmm_dict[pronun_word][state]['<MIXTURES>'][mixture[1]] = {}
-                hmm_dict[pronun_word][state]['<MIXTURES>'][mixture[1]][mixture[0]] = mixture[2]
+                    hmm_dict[pronun_word][state]['<MIXTURES>'][mixture[1]] = {}
+                    hmm_dict[pronun_word][state]['<MIXTURES>'][mixture[1]][mixture[0]] = mixture[2]
 
-                #Mean
-                mean_dim = hmm_txt.readline().split()
-                mean_num = hmm_txt.readline().split()
-                hmm_dict[pronun_word][state]['<MIXTURES>'][mixture[1]][mean_dim[0]] = mean_num
+                    #Mean
+                    mean_dim = hmm_txt.readline().split()
+                    mean_num = hmm_txt.readline().split()
+                    hmm_dict[pronun_word][state]['<MIXTURES>'][mixture[1]][mean_dim[0]] = mean_num
 
-                #Variance
-                variance_dim = hmm_txt.readline().split() #input dimension = 39
-                variance_num = hmm_txt.readline().split()
-                hmm_dict[pronun_word][state]['<MIXTURES>'][mixture[1]][variance_dim[0]] = variance_num
+                    #Variance
+                    variance_dim = hmm_txt.readline().split() #input dimension = 39
+                    variance_num = hmm_txt.readline().split()
+                    hmm_dict[pronun_word][state]['<MIXTURES>'][mixture[1]][variance_dim[0]] = variance_num
 
-                #GConst
-                g_const = hmm_txt.readline().split()
-                hmm_dict[pronun_word][state]['<MIXTURES>'][mixture[1]][g_const[0]] = g_const[1]
+                    #GConst
+                    g_const = hmm_txt.readline().split()
+                    hmm_dict[pronun_word][state]['<MIXTURES>'][mixture[1]][g_const[0]] = g_const[1]
 
-        #Transposition Probability
-        hmm_txt.readline()
-        trans_prob=[]
+            #Transposition Probability
+            hmm_txt.readline()
+            trans_prob=[]
 
-        # a matrix
-        if idx != 20:
-            for trans_idx in range(1,6):
-                trans_prob.append(hmm_txt.readline().split())
-        else:
-            for trans_idx in range(1,4):
-                trans_prob.append(hmm_txt.readline().split())
+            # a matrix
+            if idx != 20:
+                for trans_idx in range(1,6):
+                    trans_prob.append(hmm_txt.readline().split())
+            else:
+                for trans_idx in range(1,4):
+                    trans_prob.append(hmm_txt.readline().split())
 
-        hmm_dict[pronun_word]['<TRANSP>'] = trans_prob
-        #ENDHMM
-        hmm_txt.readline()
-    hmm_txt.close()
+            hmm_dict[pronun_word]['<TRANSP>'] = trans_prob
+            #ENDHMM
+            hmm_txt.readline()
+        hmm_txt.close()
 
     return hmm_dict
 
