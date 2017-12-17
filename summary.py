@@ -16,7 +16,7 @@ if __name__ == "__main__":
     y_trues_raw = result_dict["y_trues"]
     y_preds_raw = result_dict["y_preds"]
 
-    y_trues = [label_to_word(label) for label in labels]
+    y_trues = [label_to_word(label) for label in y_trues_raw]
     y_preds = []
 
     for words in y_preds_raw:
@@ -25,7 +25,7 @@ if __name__ == "__main__":
     assert len(y_preds) == len(y_trues)
 
     for i in range(len(y_preds)):
-        if len(y_preds[i]) > y_trues[i]:
+        if len(y_preds[i]) > len(y_trues[i]):
             print("y_pred: {} is longer than y_true: {}. "
                   "Cutting tail of y_pred.".format(y_preds[i], y_trues[i]))
             y_preds[i] = y_preds[i][:7]
