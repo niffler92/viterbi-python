@@ -91,6 +91,7 @@ def viterbi_isolated(hmm, start, mfcc, word, phonemes):
         if t == total_length - 1:
             result1 = {'t': t, 'v_path': v_path, 'phoneme_path': [phonemes[idx] for idx in phoneme_index]}
 
+    """
     # Case2: skip sp.
     result2 = {}
     total_length = mfcc.shape[0]
@@ -159,6 +160,9 @@ def viterbi_isolated(hmm, start, mfcc, word, phonemes):
         return result1
     else:
         return result2
+    """
+
+    return result1
 
 
 def continuous_recognition(unigram_dict, bigram_dict, phoneme_dict, hmm, mfcc):
