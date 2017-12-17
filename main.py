@@ -30,9 +30,9 @@ def main():
     y_trues = list(test_data.keys())
 
 
-    # Loop
+    #Loop
     #for label in y_trues:
-    #    words_pred =  continuous_recognition(hmm, test_data[label]['mfcc'], unigram_dict, bigram_dict, phoneme_dict)
+    #    words_pred =  continuous_recognition(unigram_dict, bigram_dict, phoneme_dict, hmm, test_data[label]['mfcc'])
     #    y_preds.append([word for word in words_pred if word != "<s>"])
 
     mfccs = []
@@ -41,8 +41,8 @@ def main():
 
 
     # Multiprocess
-    agents = 5
-    chunksize = 3
+    agents = 3
+    chunksize = 4
     with Pool(processes=agents) as pool:
         recognition = partial(continuous_recognition, unigram_dict, bigram_dict, phoneme_dict, hmm)
         y_preds = pool.map(recognition, mfccs)
