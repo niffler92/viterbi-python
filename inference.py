@@ -241,6 +241,7 @@ def continuous_recognition(unigram_dict, bigram_dict, phoneme_dict, hmm, mfcc):
         word_idx = np.argmax(viterbi_prob)
         t = int(viterbi_t[word_idx])
         word_path.append(word_list[word_idx if word_idx != len(word_list) else word_idx-1] )
+        viterbi_path.append(max(viterbi_prob))
 
         if(t == total_length-1):
             break;
