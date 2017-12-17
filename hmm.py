@@ -24,7 +24,6 @@ class HMM:
         return int(self.hmm_dict[phoneme][str(state)]['<NUMMIXES>'])
 
     def gauss_mixtures_dict(self, phoneme, state):
-        print(phoneme)
         return self.hmm_dict[phoneme][str(state)]['<MIXTURES>']
 
     def initial_prob(self, phoneme):
