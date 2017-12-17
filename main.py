@@ -1,9 +1,9 @@
 from multiprocessing import Pool
-from functool import partial
+from functools import partial
 
 import numpy as np
 import pandas as pd
-from sklearn metrics import confusion_matrix
+from sklearn.metrics import confusion_matrix
 
 from preprocess import *
 from inference import *
