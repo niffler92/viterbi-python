@@ -18,12 +18,13 @@ class HMM:
         return np.array(self.hmm_dict[phoneme]['<TRANSP>']).astype(float)
 
     def states(self, phoneme):
-        return [int(x) for x in self.hmm_dict[phoneme] if x not in ['<NUMSTATES>', '<TRANSP>']]
+        return sorted([int(x) for x in self.hmm_dict[phoneme] if x not in ['<NUMSTATES>', '<TRANSP>']])
 
     def n_mixes(self, phoneme, state):
         return int(self.hmm_dict[phoneme][str(state)]['<NUMMIXES>'])
 
     def gauss_mixtures_dict(self, phoneme, state):
+        print(phoneme)
         return self.hmm_dict[phoneme][str(state)]['<MIXTURES>']
 
     def initial_prob(self, phoneme):
