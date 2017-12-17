@@ -1,4 +1,4 @@
-from multiprocessing import Pool
+import multiprocessing as mp
 from functools import partial
 
 import numpy as np
@@ -41,9 +41,8 @@ def main():
 
 
     # Multiprocess
-    agents = 3
-    chunksize = 4
-    with Pool(processes=agents) as pool:
+    agents = mp.cpu_count() - 1
+    with mp.Pool(processes=agents) as pool:
         recognition = partial(continuous_recognition, unigram_dict, bigram_dict, phoneme_dict, hmm)
         y_preds = pool.map(recognition, mfccs)
 
