@@ -6,8 +6,8 @@ import pandas as pd
 from sklearn.metrics import confusion_matrix
 
 from preprocess import *
-from inference import *
-from hmm import HMM
+from inference import viterbi
+from hmm import HMM, StateGraph
 
 
 def label_to_word(label):
@@ -25,6 +25,7 @@ def main():
     hmm_dict = get_hmm_dict("./data/hmm.txt")
 
     hmm = HMM(hmm_dict)
+    state_graph = StateGraph(hmm, phoneme_dict, bigram_dict)
 
     y_preds = []
     y_trues = list(test_data.keys())
@@ -40,10 +41,13 @@ def main():
         mfccs.append(test_data[label]['mfcc'])
 
 
+    y_preds = y_preds[:4]
+    y_trues = y_trues[:4]
+    mfccs = mfccs[:4]
     # Multiprocess
     agents = mp.cpu_count() - 1
     with mp.Pool(processes=agents) as pool:
-        recognition = partial(continuous_recognition, unigram_dict, bigram_dict, phoneme_dict, hmm)
+        recognition = partial(viterbi, unigram_dict, hmm, state_graph)
         y_preds = pool.map(recognition, mfccs)
 
     result_dict = {"y_trues": y_trues, "y_preds": y_preds}
