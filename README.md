@@ -18,4 +18,4 @@ that maximizes the posterior <a href="https://www.codecogs.com/eqnedit.php?latex
 * [Stanford CS224s](https://web.stanford.edu/class/cs224s/lectures/224s.17.lec3.pdf)
 
 ### Result example, 10 mfccs:
-![alt text](/c/Users/Jisung/Desktop/result_example.png)
+![alt text](https://github.com/niffler92/viterbi-python/blob/master/example/result_example.png)
