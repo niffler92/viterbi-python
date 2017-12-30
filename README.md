@@ -10,6 +10,12 @@
 * Decoder
     * Viterbi Algorithm: dynamic programming for combining all these to get word squence from speech
 
+
+To execute:  
+`python main.py`  
+To print results:  
+`python summary.py`  
+
 ## Viterbi algorithm ( Max-Product algorithm )
 Objective: Find the most probable sequences of states <a href="https://www.codecogs.com/eqnedit.php?latex=\{q_0,...,&space;q_t\}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\{q_0,...,&space;q_t\}" title="\{q_0,..., q_t\}" /></a> 
 that maximizes the posterior <a href="https://www.codecogs.com/eqnedit.php?latex=p(q_0,..,q_t|o_0,...,o_t)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?p(q_0,..,q_t|o_0,...,o_t)" title="p(q_0,..,q_t|o_0,...,o_t)" /></a>
