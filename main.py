@@ -41,9 +41,9 @@ def main():
         mfccs.append(test_data[label]['mfcc'])
 
 
-    y_preds = y_preds[:4]
-    y_trues = y_trues[:4]
-    mfccs = mfccs[:4]
+    y_preds = y_preds[:10]
+    y_trues = y_trues[:10]
+    mfccs = mfccs[:10]
     # Multiprocess
     agents = mp.cpu_count() - 1
     with mp.Pool(processes=agents) as pool:
